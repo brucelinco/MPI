@@ -1,6 +1,6 @@
 CC = mpicc
 all:
-	$(CC) -lm trapezoid.c -o trapezoid.x
+	$(CC) trapezoid.c -o trapezoid.x -lm
 
 serial:
-	gcc -lm serial_trapezoid.c -o serial_trapezoid.x
+	gcc serial_trapezoid.c -o serial_trapezoid.x -lm
