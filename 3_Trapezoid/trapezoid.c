@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 
   MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
   MPI_Comm_rank(MPI_COMM_WORLD, &my_rank);
-
+  printf("rank %d in %d process\n", my_rank, numprocs);
   /* Find out what the local values are on each process */  
   local_N = N/numprocs;
   local_a = a + my_rank * local_N * h;
@@ -57,7 +57,7 @@ int main(int argc, char *argv[])
     }
 
   lcl_integral = lcl_integral*h;
-
+  printf("local integral %lf in rank %d\n", lcl_integral, my_rank);
   /* send the local results to Process 0 */
   if ( my_rank != dest ) {
      MPI_Send(&lcl_integral, 1, MPI_DOUBLE, dest, 0, MPI_COMM_WORLD);
