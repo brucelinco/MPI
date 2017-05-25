@@ -54,9 +54,8 @@ int main(int argc, char *argv[]){
       lcl_integral = lcl_integral + f(x);
   }
   lcl_integral = lcl_integral*h;
- 
-  /* Reduce and send result to ROOT */
-  MPI_Reduce(&lcl_integral, &integral, 1, MPI_DOUBLE, MPI_SUM, ROOT, MPI_COMM_WORLD);
+
+  MPI_Allreduce(&lcl_integral, &integral, 1, MPI_DOUBLE, MPI_SUM, MPI_COMM_WORLD);
 
   printf("Process %d, WITH N=%d TRAPEZOIDS, INTEGRAL=%f\n", my_rank, N, integral);
   /* MPI programming ends */
